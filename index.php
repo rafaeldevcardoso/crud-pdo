@@ -1,3 +1,8 @@
+<?
+require_once 'classe-pessoa.php';
+$p = new Pessoa("crudpdo","localhost","root","");//passar os parametros na classe.
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -31,6 +36,28 @@
                 <td>Telefone</td>
                 <td colspan="2">Email</td>
             </tr>
+           
+            <?php
+            $dados = $p->buscarDados(); //busca o método
+            if(count($dados) > 0)
+            {
+                for($i=0; $i < count($dados); $i++){
+                    echo "<tr>";
+                    foreach ($dados[$i] as $k => $v)
+                    {
+                        if($k != "id")
+                        {
+                            echo "<td>".$v."</td>";
+                        }
+                    }
+                    echo "</tr>";
+                }
+            ?>
+                <td><a href="">Editar</a><a href="">Excluir</a></td><!-- -->
+            <?php
+            }
+            ?>
+
             <tr>
                 <td></td>
                 <td></td>
